@@ -1,0 +1,27 @@
+%h4 Screenshots of your website
+= simple_form_for((@image.persisted? ? Image.new : @image), :url => screenshot_path, :html => {:class => "form-inline"}) do |form|
+  = form.input :url, :input_html => {:class => "input-xxlarge", :placeholder => "Page Url"}, :label => false
+  = form.button :submit, 'Shot', :class => "btn"
+%hr
+.row-fluid
+  - if @image.persisted?
+    .span6
+      %ul.thumbnails
+        %li.span12
+          .thumbnail{:style => "height:350px;"}
+            = image_tag @image.image.url(:thumb), :class => "img-rounded", :style => "max-height:300px;"
+            .caption
+              = link_to 'Image link', @image.image.url
+              %br
+              = link_to @image.url, @image.url
+
+  .span10
+    %ul.thumbnails
+      - images.each do |image|
+        %li.span3
+          .thumbnail{:style => "height:270px;"}
+            = image_tag image.image.url(:thumb), :class => "img-rounded", :style => "max-height:200px;"
+            .caption
+              = link_to 'Image link', image.image.url
+              %br
+              = link_to image.url, image.url
