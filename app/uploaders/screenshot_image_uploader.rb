@@ -1,6 +1,10 @@
 # encoding: utf-8
 
-class ScreenshotImageUploader < CarrierWave::Uploader::Base
+# class ScreenshotImageUploader < CarrierWave::Uploader::Base
+class ScreenshotImageUploader < CarrierWave::Uploader::GoogleDrive
+
+  google_login    ENV['GOOGLE_LOGIN']
+  google_password ENV['GOOGLE_PASSWORD']
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
